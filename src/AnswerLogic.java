@@ -34,7 +34,7 @@ public class AnswerLogic {
         for (BabyData babyName : babyData) {
             if (babyName.name.equalsIgnoreCase(name)) {
                 return "The name " + babyName.name + ", gender " + babyName.gender + ", occurred with frequency " + babyName.nameFrequency + ", and rank " + rank;
-            } 
+            }
             rank++;
         }
         return "No data available for the given name, gender and year.";
@@ -44,11 +44,13 @@ public class AnswerLogic {
     public String getMostPopularYearforName(String name, String gender) {
         Integer mostPopularYear = dataStore.getMostPopularYearForName(name, gender);
         if (mostPopularYear !=  null) {
+            int rank = 1;
             List<BabyData> babyData = dataStore.getDataByYearAndGender(mostPopularYear, gender);
             for (BabyData babyName : babyData) {
                 if (babyName.name.equalsIgnoreCase(name)) {
-                    return "The name " + name + ", gender " + gender + ", in the year " + mostPopularYear + ", occurred with frequency " + babyName.nameFrequency + ", and rank 1.";
+                    return "The name " + name + ", gender " + gender + ", in the year " + mostPopularYear + ", occurred with frequency " + babyName.nameFrequency + ", and rank " + rank + ".";
                 }
+                rank++;
             }
         }
         return "No data available for given name and gender";

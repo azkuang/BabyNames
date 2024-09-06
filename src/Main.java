@@ -5,7 +5,7 @@ public class Main {
         // Create constructor for the DataStore class
         DataStore dataStore = new DataStore();
         // Define filePath where files are located
-        String filePath = "names";
+        String filePath = "names_test";
 
         try {
             dataStore.loadData(filePath);

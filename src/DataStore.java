@@ -13,7 +13,7 @@ public class DataStore {
     private Map<String, Map<String, Integer>> mostPopularYearForNameGender = new HashMap<>();
 
     // Test code
-    // public void main(String[] args) {
+    // public void main() {
     //     // Create constructor for the DataStore class
     //     DataStore dataStore = new DataStore();
     //     // Define filePath where files are located
@@ -25,7 +25,7 @@ public class DataStore {
     //     } catch (FileNotFoundException e) {
     //         System.out.println("File not found");
     //     }
-    //     System.out.println(mapByYearAndGender);
+    //     System.out.println(mostPopularYearForNameGender);
     // }
 
     // Method to slice file name to only be the year
