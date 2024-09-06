@@ -68,9 +68,9 @@ public class DataStore {
         File[] files = folder.listFiles((dir, name) -> name.endsWith(".txt"));
 
         if (files != null) {
+            System.out.println("Loading baby names...");
             for (File file : files) {
                 int year = parseFileNameToYear(file.getName());
-                System.out.println("Loading baby names...");
                 try (Scanner scanner = new Scanner(file)) {
                     while (scanner.hasNextLine()) {
                         String line = scanner.nextLine();
@@ -89,6 +89,7 @@ public class DataStore {
         }
     }
 
+    // Retrieve data from maps
     public List<BabyData> getDataByYearAndGender(int year, String gender) {
         return mapByYearAndGender.getOrDefault(year, new HashMap<>()).getOrDefault(gender, new ArrayList<>());
     }
