@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class UserInterface {
     // Create constructor for AnswerLogic class
     private final AnswerLogic answerLogic;
-    private final Scanner scanner;
+    private final Scanner scanner;  
 
     // Constructor
     public UserInterface(AnswerLogic answerLogic) {
