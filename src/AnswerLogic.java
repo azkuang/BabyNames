@@ -30,12 +30,19 @@ public class AnswerLogic {
     // Method to display rank for a given name, gender, and year
     public String getRankForName(String name, String gender, int year) {
         List<BabyData> babyData = dataStore.getDataByYearAndGender(year, gender);
-        int rank = 1;
+        int rank = 0;
+        int prevNameFrequency = 0;
         for (BabyData babyName : babyData) {
+            if (babyName.nameFrequency != prevNameFrequency) {
+                rank++;
+            } else if (rank == 0) {
+                rank++;
+            }
             if (babyName.name.equalsIgnoreCase(name)) {
                 return "The name " + babyName.name + ", gender " + babyName.gender + ", occurred with frequency " + babyName.nameFrequency + ", and rank " + rank;
             }
-            rank++;
+
+            prevNameFrequency = babyName.nameFrequency;
         }
         return "No data available for the given name, gender and year.";
     }

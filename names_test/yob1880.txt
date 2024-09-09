@@ -3,4 +3,4 @@ Anna,F,2604
 Emma,F,2003
 Elizabeth,F,1939
 John, M, 10000
-Steve, M, 1000
+Steve, M, 10000

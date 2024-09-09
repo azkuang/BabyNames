@@ -68,7 +68,7 @@ public class DataStore {
         File[] files = folder.listFiles((dir, name) -> name.endsWith(".txt"));
 
         if (files != null) {
-            System.out.println("Loading baby names...");
+            System.out.println("Loading baby names... (Takes at least one minutes :c)");
             for (File file : files) {
                 int year = parseFileNameToYear(file.getName());
                 try (Scanner scanner = new Scanner(file)) {
