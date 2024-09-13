@@ -51,13 +51,19 @@ public class AnswerLogic {
     public String getMostPopularYearforName(String name, String gender) {
         Integer mostPopularYear = dataStore.getMostPopularYearForName(name, gender);
         if (mostPopularYear !=  null) {
-            int rank = 1;
+            int rank = 0;
+            int prevNameFrequency = 0;
             List<BabyData> babyData = dataStore.getDataByYearAndGender(mostPopularYear, gender);
             for (BabyData babyName : babyData) {
+                if (babyName.nameFrequency != prevNameFrequency) {
+                    rank++;
+                } else if (rank == 0) {
+                    rank++;
+                }
                 if (babyName.name.equalsIgnoreCase(name)) {
                     return "The name " + name + ", gender " + gender + ", in the year " + mostPopularYear + ", occurred with frequency " + babyName.nameFrequency + ", and rank " + rank + ".";
                 }
-                rank++;
+                prevNameFrequency = babyName.nameFrequency;
             }
         }
         return "No data available for given name and gender";
