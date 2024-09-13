@@ -34,7 +34,7 @@ public class DataStore {
         return Integer.parseInt(fileName.replaceAll("\\D+", ""));
     }
 
-    // Method to check what the most frequent 
+    // Method to check what the most frequent name for gender per year
     private int getFrequencyForNameAndGender(int year, String gender, String name) {
         return mapByYearAndGender
             .getOrDefault(year, new HashMap<>())
