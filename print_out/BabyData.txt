@@ -1,7 +1,3 @@
-/**
- * Alex Kuang
- */
-
 // Object to hold information about the baby names
 class BabyData {
     String name;

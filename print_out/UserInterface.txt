@@ -1,16 +1,9 @@
-/**
- * Alex Kuang - User Interface Class
- */
-
 import java.util.Scanner;
 
 public class UserInterface {
-    // Instance variables
-    private AnswerLogic answerLogic;
-    private Scanner scanner;
-    private Integer year;
-    private String gender;
-    
+    // Create constructor for AnswerLogic class
+    private final AnswerLogic answerLogic;
+    private final Scanner scanner;  
 
     // Constructor
     public UserInterface(AnswerLogic answerLogic) {
@@ -23,7 +16,7 @@ public class UserInterface {
         boolean quit = false;
         while (!quit) {
             displayQuestions();
-            String command = getUserInput();
+            String command = getUserInput().trim().toUpperCase();
             quit = handleUserCommand(command);
         }
     }
@@ -39,7 +32,7 @@ public class UserInterface {
 
     // Gets next user input
     private String getUserInput() {
-        return scanner.nextLine().trim().toUpperCase();
+        return scanner.nextLine();
     }
 
     // Runs different searches based on user input
@@ -63,26 +56,24 @@ public class UserInterface {
         return false;
     }
 
-    // method to print out questions
-    private void questions() {
-        System.out.println("Enter gender as a captial letter.");
-        gender = getUserInput().trim();
-        System.out.println("Enter the year.");
-        year = Integer.parseInt(getUserInput().trim());
-    }
-
     // Use methods from AnswerLogic class to output answers based on user response
     private void handleMostPopularName() {
-        questions();
-        String results = answerLogic.answerMostPopularName(gender, year);
+        System.out.println("Enter gender as a captial letter.");
+        String gender = getUserInput().trim();
+        System.out.println("Enter the year.");
+        int year = Integer.parseInt(getUserInput().trim());
+        String results = answerLogic.getMostPopularName(gender, year);
         System.out.println(results);
     };
 
     private void handleRank() {
         System.out.println("Enter the name.");
         String name = getUserInput().trim();
-        questions();
-        String results = answerLogic.answerRankForName(name, gender, year);
+        System.out.println("Enter the gender as a captial letter.");
+        String gender = getUserInput().trim();
+        System.out.println("Enter the year.");
+        int year = Integer.parseInt(getUserInput().trim());
+        String results = answerLogic.getRankForName(name, gender, year);
         System.out.println(results);
     };
 
@@ -91,7 +82,7 @@ public class UserInterface {
         String name = getUserInput().trim();
         System.out.println("Enter the gender as a captial letter");
         String gender = getUserInput().trim();
-        String results = answerLogic.answerMostPopularYearforName(name, gender);
+        String results = answerLogic.getMostPopularYearforName(name, gender);
         System.out.println(results);
     };
 }
