@@ -25,8 +25,8 @@ public class AnswerLogic extends DataStore {
 
         if (!babyData.isEmpty()) {
             for (BabyData babyName : babyData) {
-                if (babyName.name.equalsIgnoreCase(name)) {
-                    return babyName.nameFrequency;
+                if (babyName.getName().equalsIgnoreCase(name)) {
+                    return babyName.getNameFrequency();
                 }
             }
         } 
@@ -43,7 +43,7 @@ public class AnswerLogic extends DataStore {
             // Assume the most popular name is the first entry in the list (sorted by popularity)
             BabyData mostPopular = babyData.get(0);
             // Return the details of the most popular name
-            return mostPopular.name;
+            return mostPopular.getName();
         } else {
             // If no data is available for the given gender and year, return a default message
             return "No data available for the given gender and year.";
@@ -60,7 +60,7 @@ public class AnswerLogic extends DataStore {
         // Loop through each BabyData record in the list
         for (BabyData babyName : babyData) {
             // If the frequency of the current name differs from the previous name, increment the rank
-            if (babyName.nameFrequency != prevNameFrequency) {
+            if (babyName.getNameFrequency() != prevNameFrequency) {
                 rank++;
             } 
             // Ensure the rank starts from 1 even if the list starts with zero frequency
@@ -68,11 +68,11 @@ public class AnswerLogic extends DataStore {
                 rank++;
             }
             // If the current name matches the name we are looking for, return its rank
-            if (babyName.name.equalsIgnoreCase(name)) {
+            if (babyName.getName().equalsIgnoreCase(name)) {
                 return rank;
             }
             // Update the previous name frequency for the next iteration
-            prevNameFrequency = babyName.nameFrequency;
+            prevNameFrequency = babyName.getNameFrequency();
         }
         // If the name is not found in the list, return a message indicating no data is available
         return 0;
@@ -92,7 +92,7 @@ public class AnswerLogic extends DataStore {
             // Loop through each BabyData record in the list
             for (BabyData babyName : babyData) {
                 // If the frequency of the current name differs from the previous name, increment the rank
-                if (babyName.nameFrequency != prevNameFrequency) {
+                if (babyName.getNameFrequency() != prevNameFrequency) {
                     rank++;
                 } 
                 // Ensure the rank starts from 1 even if the list starts with zero frequency
@@ -100,11 +100,11 @@ public class AnswerLogic extends DataStore {
                     rank++;
                 }
                 // If the current name matches the name we're looking for, return the frequency and rank
-                if (babyName.name.equalsIgnoreCase(name)) {
-                    return new int[]{mostPopularYear, rank, babyName.nameFrequency};
+                if (babyName.getName().equalsIgnoreCase(name)) {
+                    return new int[]{mostPopularYear, rank, babyName.getNameFrequency()};
                 }
                 // Update the previous name frequency for the next iteration
-                prevNameFrequency = babyName.nameFrequency;
+                prevNameFrequency = babyName.getNameFrequency();
             }
         }
         // If no data is found, return a message indicating no data is available

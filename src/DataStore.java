@@ -53,9 +53,9 @@ public class DataStore {
             // Stream through the list of persons to process each one
             .stream() 
             // Filter the list to only include persons with the name that matches the provided name
-            .filter(p -> p.name.equals(name)) 
+            .filter(p -> p.getName().equals(name)) 
             // Map the filtered results to their corresponding name frequency
-            .mapToInt(p -> p.nameFrequency) 
+            .mapToInt(p -> p.getNameFrequency()) 
             // Retrieve the first occurrence of the name and return its frequency, or return 0 if no match is found
             .findFirst() 
             .orElse(0); // If no matching name is found, return 0

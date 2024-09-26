@@ -2,7 +2,6 @@
  * Alex Kuang - User Interface Class
  */
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class UserInterface {
