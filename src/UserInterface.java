@@ -2,6 +2,7 @@
  * Alex Kuang - User Interface Class
  */
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -23,7 +24,7 @@ public class UserInterface {
         boolean quit = false;
         while (!quit) {
             displayQuestions();
-            String command = getUserInput();
+            String command = getUserInput().trim().toUpperCase();
             quit = handleUserCommand(command);
         }
     }
@@ -39,7 +40,7 @@ public class UserInterface {
 
     // Gets next user input
     private String getUserInput() {
-        return scanner.nextLine().trim().toUpperCase();
+        return scanner.nextLine();
     }
 
     // Runs different searches based on user input
@@ -68,22 +69,39 @@ public class UserInterface {
         System.out.println("Enter gender as a captial letter.");
         gender = getUserInput().trim();
         System.out.println("Enter the year.");
-        year = Integer.parseInt(getUserInput().trim());
+
+        try {
+            year = Integer.parseInt(getUserInput().trim());
+        } catch (NumberFormatException e) {
+            System.out.println("Enter a valid year.");
+        }
     }
 
     // Use methods from AnswerLogic class to output answers based on user response
     private void handleMostPopularName() {
         questions();
-        String results = answerLogic.answerMostPopularName(gender, year);
-        System.out.println(results);
+
+        String mostPopularName = answerLogic.answerMostPopularName(gender, year);
+        int nameFrequency = answerLogic.getNameFrequency(mostPopularName, gender ,year);
+        System.out.println("The name " + mostPopularName + ", gender " + gender + ", in the year " + year + 
+                ", occurred with frequency " + nameFrequency + ", and rank 1");
     };
 
     private void handleRank() {
         System.out.println("Enter the name.");
         String name = getUserInput().trim();
+
         questions();
-        String results = answerLogic.answerRankForName(name, gender, year);
-        System.out.println(results);
+
+        int rank = answerLogic.answerRankForName(name, gender, year);
+        int nameFrequency = answerLogic.getNameFrequency(name, gender, year);
+
+        if (rank == 0) {
+            System.out.println("No data available for given name, gender, and year.");
+        }
+
+        System.out.println("The name " + name + ", gender " + gender +
+                    ", occurred with frequency " + nameFrequency + ", and rank " + rank);
     };
 
     private void handleMostPopularYear() {
@@ -91,7 +109,17 @@ public class UserInterface {
         String name = getUserInput().trim();
         System.out.println("Enter the gender as a captial letter");
         String gender = getUserInput().trim();
-        String results = answerLogic.answerMostPopularYearforName(name, gender);
-        System.out.println(results);
+
+        int[] mostPopularYearAndRank = answerLogic.answerMostPopularYearforName(name, gender);
+
+        if (mostPopularYearAndRank[0] == 0 || 
+            mostPopularYearAndRank[1] == 0 || 
+            mostPopularYearAndRank[2] == 0) {
+            System.out.println("No data available for given name and gender.");
+        } else {
+            System.out.println("The name " + name + ", gender " + gender + ", in the year " + mostPopularYearAndRank[0] +
+            ", occurred with frequency " + mostPopularYearAndRank[2] + ", and rank " + mostPopularYearAndRank[1] + ".");
+        }
+        
     };
 }

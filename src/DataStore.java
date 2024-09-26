@@ -115,6 +115,14 @@ public class DataStore {
         return mostPopularYearForNameGender.getOrDefault(name, new HashMap<>()).get(gender);
     }
 
+    protected Map<Integer, Map<String, List<BabyData>>> getMapByYearAndGender() {
+        return mapByYearAndGender;
+    }
+
+    protected Map<String, Map<String, Integer>> getMapMostPopularYearForNameGender() {
+        return mostPopularYearForNameGender;
+    }
+
     // Test method to see if data was getting added to the maps correctly
     // public void displayData() {
     //     mapByYearAndGender.forEach((year, genderMap) -> {

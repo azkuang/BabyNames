@@ -11,7 +11,7 @@ public class StartProgram {
     private String PROGRAM_FILE = "names";
 
     public void start() {
-                // Create constructor for the DataStore class
+        // Create constructor for the DataStore class
         DataStore dataStore = new DataStore();
         // Define filePath where files are located
         String filePath = PROGRAM_FILE;
