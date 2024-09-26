@@ -13,12 +13,7 @@ public class OutputAnswers extends DataStore {
     private AnswerLogic answerLogic;
     private DataStore dataStore;
 
-    // Instance variables
-    private String TEST_FILE = "names_test";
-    private String PROGRAM_FILE = "names";
-
     private Map<Integer, Map<String, List<BabyData>>> mapByYearAndGender = dataStore.getMapByYearAndGender();
-    private Map<String, Map<String, Integer>> mostPopularYearForNameGender = dataStore.getMapMostPopularYearForNameGender();
 
     // Map to hold all possible years
     private Set<Integer> years = mapByYearAndGender.keySet();

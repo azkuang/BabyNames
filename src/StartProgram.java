@@ -26,4 +26,18 @@ public class StartProgram {
         UserInterface userInterface = new UserInterface(answerLogic);
         userInterface.start();
     }
+
+    public DataStore startTest() {
+        DataStore dataStore = new DataStore();
+
+        String filePath = TEST_FILE;
+
+        try {
+            dataStore.loadData(filePath);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
+
+        return dataStore;
+    }
 }
