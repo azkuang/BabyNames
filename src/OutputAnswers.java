@@ -1,8 +1,12 @@
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Set;
+
+import org.junit.platform.reporting.shadow.org.opentest4j.reporting.events.core.Data;
+
 import java.util.Collections;
 
 /**
@@ -17,6 +21,26 @@ public class OutputAnswers extends DataStore {
         this.dataStore = dataStore;
         this.answerLogic = answerLogic;
     }
+
+    // Debug method
+    // public static void main(String[] args) {
+    //     // Create constructor for the DataStore class
+    //     DataStore dataStore = new DataStore();
+    //     // Define filePath where files are located
+    //     String filePath = "names_test";
+
+    //     try {
+    //         dataStore.loadData(filePath);
+    //     } catch (FileNotFoundException e) {
+    //         System.out.println("File not found");
+    //     }
+
+    //     AnswerLogic answerLogic = new AnswerLogic(dataStore);
+
+    //     OutputAnswers outputAnswers = new OutputAnswers(dataStore, answerLogic);
+    //     String res = outputAnswers.nameGenderPairWithSameRank("Elizabeth", "F", 1880);
+    //     System.out.println(res);
+    // }
 
     // Returns all rankings of name/gender pairs
     public Map<Integer, Integer> getAllRankings(String name, String gender) {
@@ -55,12 +79,11 @@ public class OutputAnswers extends DataStore {
         int mostRecentYear = Collections.max(mapByYearAndGender.keySet());
         int currentRank = answerLogic.answerRankForName(name, gender, year);
         List<BabyData> babyData = dataStore.getDataByYearAndGender(mostRecentYear, gender);
+        
+        int rank = 0;
+        int prevNameFrequency = 0;
 
         for (BabyData babyName : babyData) {
-
-            int rank = 0;
-            int prevNameFrequency = 0;
-          
             // If the frequency of the current name differs from the previous name, increment the rank
             if (babyName.getNameFrequency() != prevNameFrequency) {
                 rank++;
@@ -71,7 +94,7 @@ public class OutputAnswers extends DataStore {
             }
             // If the current name matches the name we are looking for, return its rank
             if (rank == currentRank) {
-                return babyName.getName() + ", " + babyName.getGender() + "has the same rank as " + name + ", " + gender + ".";
+                return babyName.getName() + ", " + babyName.getGender() + " has the same rank as " + name + ", " + gender + ".";
             }
             // Update the previous name frequency for the next iteration
             prevNameFrequency = babyName.getNameFrequency();

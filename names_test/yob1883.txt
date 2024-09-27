@@ -1,6 +1,6 @@
-Mary,F,706
-Anna,F,260
-Emma,F,200
-Elizabeth,F,193
-John, M, 1000
-Steve, M, 999
+Anna,F,45678
+John,M,98765
+Elizabeth,F,87654
+Mary,F,23456
+Steve,M,34567
+Emma,F,12345
