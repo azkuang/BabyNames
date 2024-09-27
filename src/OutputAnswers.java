@@ -13,17 +13,17 @@ public class OutputAnswers extends DataStore {
     private AnswerLogic answerLogic;
     private DataStore dataStore;
 
-    private Map<Integer, Map<String, List<BabyData>>> mapByYearAndGender = dataStore.getMapByYearAndGender();
-
-    // Map to hold all possible years
-    private Set<Integer> years = mapByYearAndGender.keySet();
-
     public OutputAnswers(DataStore dataStore, AnswerLogic answerLogic) {
-        this.answerLogic = new AnswerLogic(dataStore);
+        this.dataStore = dataStore;
+        this.answerLogic = answerLogic;
     }
 
     // Returns all rankings of name/gender pairs
     public Map<Integer, Integer> getAllRankings(String name, String gender) {
+        Map<Integer, Map<String, List<BabyData>>> mapByYearAndGender = dataStore.getMapByYearAndGender();
+        // Map to hold all possible years
+        Set<Integer> years = mapByYearAndGender.keySet();
+
         // Map to store rankings for each year
         Map<Integer, Integer> allNameGenderRank = new HashMap<>();
 
@@ -50,6 +50,8 @@ public class OutputAnswers extends DataStore {
 
     // Returns the rank of the name/gender pair in a given year, then finds a name/gender pair with the same ranking in the most recent year
     public String nameGenderPairWithSameRank(String name, String gender, int year) {
+        Map<Integer, Map<String, List<BabyData>>> mapByYearAndGender = dataStore.getMapByYearAndGender();
+    
         int mostRecentYear = Collections.max(mapByYearAndGender.keySet());
         int currentRank = answerLogic.answerRankForName(name, gender, year);
         List<BabyData> babyData = dataStore.getDataByYearAndGender(mostRecentYear, gender);

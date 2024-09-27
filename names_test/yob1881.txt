@@ -1,2 +1,6 @@
-John, M, 10001
-Steve, M, 10000
+Mary,F,1080
+Anna,F,988
+Emma,F,543
+Elizabeth,F,323
+John,M,10123
+Steve,M,9000 

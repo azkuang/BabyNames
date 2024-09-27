@@ -1,0 +1,6 @@
+Mary,F,70650
+Anna,F,26042
+Emma,F,20034
+Elizabeth,F,19391
+John, M, 100002
+Steve, M, 100005

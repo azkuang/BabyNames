@@ -1,0 +1,6 @@
+Mary,F,70
+Anna,F,26
+Emma,F,20
+Elizabeth,F,19
+John, M, 98
+Steve, M, 57

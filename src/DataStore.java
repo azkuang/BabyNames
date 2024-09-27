@@ -5,11 +5,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class DataStore {
     // Initialize two hashmaps to hold the baby name data
@@ -78,6 +74,15 @@ public class DataStore {
             });
     }
 
+    // Method to sort the names by frequency
+    private void sortDataByFrequency() {
+        mapByYearAndGender.values().forEach(genderMap ->
+                genderMap.values().forEach(personList ->
+                        personList.sort(Comparator.comparingInt(p -> -p.getNameFrequency()))
+                )
+        );
+    }
+
     // Read the files inside the inputted folder, parse the data, and load into maps
     public void loadData(String folderPath) throws FileNotFoundException {
         File folder = new File(folderPath);
@@ -104,6 +109,8 @@ public class DataStore {
                 }
             }
         }
+
+        sortDataByFrequency();
     }
 
     // Retrieve data from maps
